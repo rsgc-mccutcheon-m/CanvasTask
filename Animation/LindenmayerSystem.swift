@@ -2,37 +2,19 @@ import Foundation
 
 public class LindenmayerSystem {
     // Set up required information
-    var initialLength : Float           // initial line segment length
-    var currentLength : Float           // current line segment length
-    var reduction : Float               // reduction factor
-    var x : Int                         // initial horizontal position of turtle
-    var y : Int                         // initial vertical position of turtle
-    var direction : Int                 // initial direction turtle faces (degrees)
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String
     var rule : String
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
-    var animationPosition = 0           // tracks current character being interpreted when
-                                        // Lindenmayer system is rendered with an animation, step by step
+                                        // is rendered with an animation, step by step
     
-    public init(length : Float,
-                reduction : Float,
-                x : Int,
-                y : Int,
-                direction : Int,
-                angle : Degrees,
+    public init(angle : Degrees,
                 axiom : String,
                 rule : String,
                 generations : Int) {
         
         // Initialize stored properties
-        initialLength = length
-        currentLength = initialLength
-        self.reduction = reduction
-        self.x = x
-        self.y = y
-        self.direction = direction
         self.angle = angle
         self.axiom = axiom
         self.rule = rule
@@ -42,6 +24,19 @@ public class LindenmayerSystem {
         // Apply the production rule
         applyRules()
         
+    }
+    
+    public init(with system : LindenmayerSystem) {
+        
+        // Initalize stored properties
+        self.angle = system.angle
+        self.axiom = system.axiom
+        self.rule = system.rule
+        self.n = system.n
+        self.word.append(axiom)   // The first word is the axiom
+        
+        // Apply the production rule
+        applyRules()
     }
     
     func applyRules() {

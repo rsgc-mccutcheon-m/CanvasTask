@@ -2,13 +2,13 @@ import Foundation
 
 public class EnhancedCanvas : Canvas {
     
-    public func render(system s : LindenmayerSystem) {
+    public func render(system s : VisualizedLindenmayerSystem) {
         
         render(system: s, generation: s.n)
         
     }
     
-    public func render(system : LindenmayerSystem, generation : Int) {
+    public func render(system : VisualizedLindenmayerSystem, generation : Int) {
         
         // Verify that generation that was asked to be rendered actually exists
         var generation = generation
@@ -29,7 +29,7 @@ public class EnhancedCanvas : Canvas {
 
     }
     
-    public func renderAnimated(system : LindenmayerSystem, generation : Int) {
+    public func renderAnimated(system : VisualizedLindenmayerSystem, generation : Int) {
         
         // Verify that generation that was asked to be rendered actually exists
         var generation = generation
@@ -66,7 +66,7 @@ public class EnhancedCanvas : Canvas {
         
     }
     
-    func interpret(character : Character, forThis system : LindenmayerSystem) {
+    func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
         
         // Interpret each character of the word
         switch character {

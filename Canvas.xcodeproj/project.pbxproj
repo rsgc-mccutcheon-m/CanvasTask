@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FF173991EBCADE800BE9598 /* LineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF173981EBCADE800BE9598 /* LineColor.swift */; };
+		3FF1739B1EBCB2B400BE9598 /* SystemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1739A1EBCB2B400BE9598 /* SystemState.swift */; };
 		81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A091C130A10007ED524 /* AppDelegate.swift */; };
 		81064A0C1C130A10007ED524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81064A0B1C130A10007ED524 /* ViewController.swift */; };
 		81064A0E1C130A10007ED524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81064A0D1C130A10007ED524 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		3FF173981EBCADE800BE9598 /* LineColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineColor.swift; sourceTree = "<group>"; };
+		3FF1739A1EBCB2B400BE9598 /* SystemState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemState.swift; sourceTree = "<group>"; };
 		81064A061C130A10007ED524 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81064A091C130A10007ED524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81064A0B1C130A10007ED524 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				81064A0F1C130A10007ED524 /* Main.storyboard */,
 				81064A121C130A10007ED524 /* Info.plist */,
 				3FF173981EBCADE800BE9598 /* LineColor.swift */,
+				3FF1739A1EBCB2B400BE9598 /* SystemState.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				3FF173991EBCADE800BE9598 /* LineColor.swift in Sources */,
 				81678C541EBA34D3006FB3B9 /* VisualizedLindenmayerSystem.swift in Sources */,
 				81F1943C1EABB91100832CA6 /* EnhancedCanvas.swift in Sources */,
+				3FF1739B1EBCB2B400BE9598 /* SystemState.swift in Sources */,
 				81064A1C1C132DA2007ED524 /* Sketch.swift in Sources */,
 				81064A0A1C130A10007ED524 /* AppDelegate.swift in Sources */,
 			);

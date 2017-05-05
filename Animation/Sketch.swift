@@ -72,7 +72,7 @@ class Sketch : NSObject {
                                                        reduction: 4,
                                                        x: 100,
                                                        y: 400,
-                                                       direction: 10,
+                                                       direction: 22,
                                                        colours: ["1" : LineColor(hue: 140, saturation: 10, brightness: 10),
                                                                  "2" : LineColor(hue: 150, saturation: 50, brightness: 80),
                                                                  "3" : LineColor(hue: 160, saturation: 70, brightness: 90)]
@@ -114,16 +114,16 @@ class Sketch : NSObject {
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
-//        // Clear the screen
+        // Clear the screen
 //        canvas.fillColor = Color.white
 //        canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: canvas.width, height: canvas.height)
 //        
 //        // Render each generation step by step
-//        canvas.render(system: smallKochSnowflake, generation: canvas.frameCount)
+//       canvas.render(system: largeKochIsland, generation: canvas.frameCount)
         print(canvas.frameCount)
         
         // Render the current system
-        canvas.renderAnimated(system: largeKochIsland, generation: 4)
+        //canvas.renderAnimated(system: largeKochIsland, generation: 2)
         //canvas.renderAnimated(system: smallKochSnowflake, generation: 5)
         
     }

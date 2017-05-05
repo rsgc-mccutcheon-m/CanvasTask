@@ -83,6 +83,11 @@ public class EnhancedCanvas : Canvas {
         case "-":
             // Turn right
             self.rotate(by: system.angle * -1)
+//            
+        case "1", "2", "3":
+            self.lineColor = Color(hue: system.colors["\(character)"]!.hue , saturation: system.colors["\(character)"]!.saturation, brightness: system.colors["\(character)"]!.brightness, alpha: 100)
+            
+
         default:
             // Do nothing for any another character in the word
             break

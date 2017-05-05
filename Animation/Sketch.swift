@@ -13,6 +13,8 @@ class Sketch : NSObject {
     // NOTE: Every sketch must contain an object of type Canvas named 'canvas'
     //       Therefore, the line immediately below must always be present.
     let canvas : EnhancedCanvas
+
+    
     
     // Create the basic L-systems
     let kochSnowflake : LindenmayerSystem
@@ -60,8 +62,8 @@ class Sketch : NSObject {
         
         // Set up a Koch Island
         kochIsland = LindenmayerSystem(angle: 90,
-                                       axiom: "F-F-F-F",
-                                       rule: "F-F+F+FF-F-F+F",
+                                       axiom: "1F-2F-3F-1F",
+                                       rule: "1F-F+2F+F3F-F-1F+F",
                                        generations: 5)
         
         // Visualize the Koch Island
@@ -70,7 +72,11 @@ class Sketch : NSObject {
                                                        reduction: 4,
                                                        x: 100,
                                                        y: 400,
-                                                       direction: 10)
+                                                       direction: 10,
+                                                       colours: ["1" : LineColor(hue: 140, saturation: 10, brightness: 10),
+                                                                 "2" : LineColor(hue: 150, saturation: 50, brightness: 80),
+                                                                 "3" : LineColor(hue: 160, saturation: 70, brightness: 90)]
+                                                        )
         
         // Set up a Koch Swirl
         kochSwirl = LindenmayerSystem(angle: 90,
@@ -108,8 +114,17 @@ class Sketch : NSObject {
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
+//        // Clear the screen
+//        canvas.fillColor = Color.white
+//        canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: canvas.width, height: canvas.height)
+//        
+//        // Render each generation step by step
+//        canvas.render(system: smallKochSnowflake, generation: canvas.frameCount)
+        print(canvas.frameCount)
+        
         // Render the current system
-        canvas.renderAnimated(system: mediumConstruction, generation: 2)
+        canvas.renderAnimated(system: largeKochIsland, generation: 4)
+        //canvas.renderAnimated(system: smallKochSnowflake, generation: 5)
         
     }
     

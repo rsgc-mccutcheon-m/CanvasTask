@@ -20,7 +20,7 @@ public class LindenmayerSystem {
         // Initialize stored properties
         self.angle = angle
         self.axiom = axiom
-        self.rule = rule
+        self.rule = 
         self.n = generations
         self.word.append(axiom)   // The first word is the axiom
   
@@ -43,6 +43,18 @@ public class LindenmayerSystem {
         applyRules()
     }
     
+    func parseRules(raw: [Character : [String]]) {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     func applyRules() {
         
         // See if word needs to be re-written
@@ -58,10 +70,11 @@ public class LindenmayerSystem {
                 for character in word[i - 1].characters {
                     
                     if rule[character] != nil {
+        
                         
-                        for subRules in rule[character]! {
+                        for subRule in rule[character]! {
                             
-                            
+                           
                             
                             
                             

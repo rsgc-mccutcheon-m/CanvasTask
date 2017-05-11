@@ -68,6 +68,8 @@ public class EnhancedCanvas : Canvas {
     
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
         
+        
+        
         // Interpret each character of the word
         switch character {
         case "F":
@@ -83,7 +85,7 @@ public class EnhancedCanvas : Canvas {
         case "-":
             // Turn right
             self.rotate(by: system.angle * -1)
-//            
+            
         case "1", "2", "3":
             self.lineColor = Color(hue: system.colors["\(character)"]!.hue , saturation: system.colors["\(character)"]!.saturation, brightness: system.colors["\(character)"]!.brightness, alpha: 100)
             

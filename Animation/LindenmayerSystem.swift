@@ -1,17 +1,20 @@
 import Foundation
 
 public class LindenmayerSystem {
+    
+    
+    
     // Set up required information
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String
-    var rule : [Character : String]
+    var rule : [Character : [String]]
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
                                         // is rendered with an animation, step by step
     
     public init(angle : Degrees,
                 axiom : String,
-                rule : [Character : String],
+                rule : [Character : [String]],
                 generations : Int) {
         
         // Initialize stored properties
@@ -20,6 +23,7 @@ public class LindenmayerSystem {
         self.rule = rule
         self.n = generations
         self.word.append(axiom)   // The first word is the axiom
+  
         
         // Apply the production rule
         applyRules()
@@ -55,8 +59,18 @@ public class LindenmayerSystem {
                     
                     if rule[character] != nil {
                         
+                        for subRules in rule[character]! {
+                            
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
                         // apply production rule, replace "old" F with new string
-                        newWord.append(rule[character]!)
+                        //newWord.append(rule[character]!)
                         
                     } else {
                         

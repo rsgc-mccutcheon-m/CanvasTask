@@ -7,14 +7,14 @@ public class LindenmayerSystem {
     // Set up required information
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String
-    var rule : [Character : [String]]
+    var rule : [Character : [Rule]]
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
                                         // is rendered with an animation, step by step
     
     public init(angle : Degrees,
                 axiom : String,
-                rule : [Character : [String]],
+                rule : [Character : [Rule]],
                 generations : Int) {
         
         // Initialize stored properties
@@ -43,12 +43,30 @@ public class LindenmayerSystem {
         applyRules()
     }
     
-    func parseRules(raw: [Character : [String]]) {
+    func parseRules(raw: [Character : [String]]) -> [Character : [Rule]] {
         
+        var parsedRules : [Character : [Rule]] = [:]
         
-        
-        
-        
+        for (predecessor, successors) in raw {
+            
+            for successor in successors {
+                
+                var totalRules : Int
+                totalRules += 1
+                
+                if parsedRules[predecessor] != nil {
+                    
+                    parsedRules[predecessor]!.append(Rule(rule: successor))
+                    
+                } else {
+                    
+                    parsedRules[predecessor] = [Rule(rule: successor)]
+                    
+                }
+                
+                
+            }
+        }
         
         
         

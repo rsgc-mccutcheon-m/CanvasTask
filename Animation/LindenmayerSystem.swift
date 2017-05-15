@@ -10,7 +10,7 @@ public class LindenmayerSystem {
     var rule : [Character : [Rule]]
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
-                                        // is rendered with an animation, step by step
+    // is rendered with an animation, step by step
     
     public init(angle : Degrees,
                 axiom : String,
@@ -20,10 +20,10 @@ public class LindenmayerSystem {
         // Initialize stored properties
         self.angle = angle
         self.axiom = axiom
-        self.rule = 
-        self.n = generations
+        self.rule =
+            self.n = generations
         self.word.append(axiom)   // The first word is the axiom
-  
+        
         
         // Apply the production rule
         applyRules()
@@ -45,14 +45,12 @@ public class LindenmayerSystem {
     
     func parseRules(raw: [Character : [String]]) -> [Character : [Rule]] {
         
+        var oddsTotal : Int
         var parsedRules : [Character : [Rule]] = [:]
         
         for (predecessor, successors) in raw {
             
             for successor in successors {
-                
-                var totalRules : Int
-                totalRules += 1
                 
                 if parsedRules[predecessor] != nil {
                     
@@ -64,13 +62,20 @@ public class LindenmayerSystem {
                     
                 }
                 
+            }
+            
+            
+        }
+        
+        for (predecessor, successors) in parsedRules {
+            
+            for var successor in successors {
+                
+                successor.getProbabillity
+                
                 
             }
         }
-        
-        
-        
-        
     }
     
     func applyRules() {
@@ -88,11 +93,11 @@ public class LindenmayerSystem {
                 for character in word[i - 1].characters {
                     
                     if rule[character] != nil {
-        
+                        
                         
                         for subRule in rule[character]! {
                             
-                           
+                            
                             
                             
                             

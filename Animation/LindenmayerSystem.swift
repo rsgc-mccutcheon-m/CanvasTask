@@ -109,15 +109,26 @@ public class LindenmayerSystem {
                     if rule[character] != nil {
                         
                         
-                        for subRule in rule[character]! {
+                        if rule[character]!.count > 1 {
                             
+                            var rand =  Float(arc4random_uniform(100))/100
+                        
+                            for subRule in rule[character]! {
+                                
+                                if subRule.probabillity <= rand {
+                                    
+                                    newWord.append(subRule.string)
+                                    
+                                }
+                                
+                            }
                             
+                        } else {
                             
+                            newWord.append(rule[character]!.first!.string)
                             
                             
                         }
-                        
-                        
                         
                         // apply production rule, replace "old" F with new string
                         //newWord.append(rule[character]!)

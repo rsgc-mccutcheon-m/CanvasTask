@@ -24,7 +24,6 @@ public struct Rule {
                 
                 self.odds = tempProb
                 
-                
             } else {
                 
               

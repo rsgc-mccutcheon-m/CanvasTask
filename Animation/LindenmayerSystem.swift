@@ -14,16 +14,16 @@ public class LindenmayerSystem {
     
     public init(angle : Degrees,
                 axiom : String,
-                rule : [Character : [Rule]],
+                rule : [Character : [String]],
                 generations : Int) {
         
         // Initialize stored properties
         self.angle = angle
         self.axiom = axiom
-        self.rule =
-            self.n = generations
+        self.rule = [:]
+        self.n = generations
         self.word.append(axiom)   // The first word is the axiom
-        
+        self.rule = parseRules(raw: rule)
         
         // Apply the production rule
         applyRules()
@@ -45,7 +45,8 @@ public class LindenmayerSystem {
     
     func parseRules(raw: [Character : [String]]) -> [Character : [Rule]] {
         
-        var oddsTotal : Int
+        var oddsTotal : Int = 0
+        var prevOdds  : Float  = 0
         var parsedRules : [Character : [Rule]] = [:]
         
         for (predecessor, successors) in raw {
@@ -71,11 +72,24 @@ public class LindenmayerSystem {
             
             for var successor in successors {
                 
-                successor.getProbabillity
-                
+                oddsTotal += successor.odds
                 
             }
         }
+        
+        for (predecessor, successors) in parsedRules {
+            
+            prevOdds = 0
+            for var successor in successors {
+                
+                successor.probabillity = (Float(successor.odds) / Float(oddsTotal)) + prevOdds
+                prevOdds = successor.probabillity
+                
+            }
+        }
+        
+        return parsedRules
+        
     }
     
     func applyRules() {

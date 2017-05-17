@@ -20,15 +20,17 @@ public struct Rule {
     
         if let components : [String] = rule.components(separatedBy: "/") {
             
+            
+            
             if let tempProb : Int = Int(components.first!) {
                 
                 self.odds = tempProb
                 
             } else {
                 
-              
-                print("failed on initializing rule \(rule)")
-                exit(0)
+                self.odds = 0
+                print("Rule \(rule) is not stochastic")
+                
             }
             
             if let tempString : String = components.last! {
@@ -44,8 +46,9 @@ public struct Rule {
             
         } else {
             
-            print("failed on initializing rule \(rule)")
+            print("failed on separating initializing rule \(rule)")
             exit(0)
+        
         }
         
         self.probabillity = 0.0

@@ -127,7 +127,6 @@ public class LindenmayerSystem {
                             
                             newWord.append(rule[character]!.first!.string)
                             
-                            
                         }
                         
                         // apply production rule, replace "old" F with new string

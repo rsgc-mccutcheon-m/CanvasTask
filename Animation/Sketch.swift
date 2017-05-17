@@ -14,7 +14,8 @@ class Sketch : NSObject {
     //       Therefore, the line immediately below must always be present.
     let canvas : EnhancedCanvas
 
-    
+    var stateStack : [ Int : SystemState] = [:]
+    var systemStack : [VisualizedLindenmayerSystem] = []
     
     // Create the basic L-systems
     let kochSnowflake : LindenmayerSystem
@@ -37,11 +38,14 @@ class Sketch : NSObject {
         // Create a new canvas
         canvas = EnhancedCanvas(width: 500, height: 500)
         
+        
         // Set up a Koch snowflake
         kochSnowflake = LindenmayerSystem(angle: 60,
                                           axiom: "F++F++F",
-                                          rule: [ "F" : ["F-F++F-F"]],
+                                          rule: [ "F" : ["4/F-F++F-F", "1/F++F++F"]],
                                           generations: 5)
+        
+        
         
         // Visualize this as a small snowflake
         smallKochSnowflake = VisualizedLindenmayerSystem(with: kochSnowflake,
@@ -50,6 +54,9 @@ class Sketch : NSObject {
                                                          x: 120,
                                                          y: 175,
                                                          direction: 0)
+        //APPEND TO STACK
+        self.systemStack.append(smallKochSnowflake)
+        
         
         // Visualize this as a small snowflake
         mediumKochSnowflake = VisualizedLindenmayerSystem(with: kochSnowflake,
@@ -58,6 +65,8 @@ class Sketch : NSObject {
                                                           x: 250,
                                                           y: 300,
                                                           direction: 0)
+        //APPEND TO STACK
+        self.systemStack.append(mediumKochSnowflake)
         
         
         // Set up a Koch Island
@@ -65,6 +74,7 @@ class Sketch : NSObject {
                                        axiom: "1FX-2FX-3FX-1F",
                                        rule: [ "F" : ["1F-F+2F+F3F-F-1F+F"], "X" : ["F-F++"]],
                                        generations: 5)
+        
         
         // Visualize the Koch Island
         largeKochIsland = VisualizedLindenmayerSystem(with: kochIsland,
@@ -77,6 +87,9 @@ class Sketch : NSObject {
                                                                  "2" : LineColor(hue: 150, saturation: 50, brightness: 80),
                                                                  "3" : LineColor(hue: 160, saturation: 70, brightness: 90)]
                                                         )
+        //APPEND TO STACK
+        self.systemStack.append(largeKochIsland)
+        
         
         // Set up a Koch Swirl
         kochSwirl = LindenmayerSystem(angle: 90,
@@ -91,6 +104,8 @@ class Sketch : NSObject {
                                                       x: 250,
                                                       y: 400,
                                                       direction: 0)
+        //APPEND TO STACK
+        self.systemStack.append(mediumKochSwirl)
 
         // Set up another Koch construction
         kochConstruction = LindenmayerSystem(angle: 90,
@@ -119,14 +134,16 @@ class Sketch : NSObject {
 //        canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: canvas.width, height: canvas.height)
 //        
 //        // Render each generation step by step
-//       canvas.render(system: largeKochIsland, generation: canvas.frameCount)
+       canvas.render(system: mediumKochSnowflake, generation: 4)
         print(canvas.frameCount)
         
         // Render the current system
-        canvas.renderAnimated(system: mediumKochSwirl, generation: 7)
+        //canvas.renderAnimated(system: mediumKochSnowflake, generation: 0)
         //canvas.renderAnimated(system: smallKochSnowflake, generation: 5)
         
     }
+    
+   
     
     // Respond to the mouseDown event
     func mouseDown() {

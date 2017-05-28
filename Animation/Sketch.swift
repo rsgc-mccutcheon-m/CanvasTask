@@ -135,9 +135,9 @@ class Sketch : NSObject {
 //        
 //        // Render each generation step by step
        //canvas.render(systems: [smallKochSnowflake], generation: 4)
-        canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 0)
+        canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 1)
         print("WORD:")
-        print(smallKochSnowflake.word[0])
+        print(smallKochSnowflake.word[1])
         
         //print(canvas.frameCount)
         

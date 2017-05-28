@@ -5,6 +5,7 @@ public class LindenmayerSystem {
     
     
     // Set up required information
+    var rendered : Bool
     var angle : Float                 // rotation amount for turtle (degrees)
     var axiom : String
     var rule : [Character : [Rule]]
@@ -23,7 +24,9 @@ public class LindenmayerSystem {
         self.rule = [:]
         self.n = generations
         self.word.append(axiom)   // The first word is the axiom
+        self.rendered = false
         self.rule = parseRules(raw: rule)
+        
         
         // Apply the production rule
         applyRules()
@@ -38,7 +41,7 @@ public class LindenmayerSystem {
         self.rule = system.rule
         self.n = system.n
         self.word.append(axiom)   // The first word is the axiom
-        
+        self.rendered = false
         // Apply the production rule
         applyRules()
     }

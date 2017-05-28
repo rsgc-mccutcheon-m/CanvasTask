@@ -31,31 +31,27 @@ public class EnhancedCanvas : Canvas {
     
     public func BlenderRender(systems : [VisualizedLindenmayerSystem], generations : Int) {
         
-        
+
         // Verify that generation that was asked to be rendered actually exists
         for system in systems {
-            
-            print("Run1")
-            
-            
-          
-            var generation = generations
-            if generation >= system.n {
+            if !system.rendered {
                 
-                generation = system.n
+            
+                var generation = generations
+                if generation >= system.n {
+                    generation = system.n
+                }
+                
+                // Change the line length
+                system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+                
+                // Render the word
+                for c in system.word[generation].characters {
+                    interpret(character: c, forThis: system)
+                }
+                system.rendered = true
             }
-            
-            // Change the line length
-            system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
-            
-            // Render the word
-            for c in system.word[generation].characters {
-                interpret(character: c, forThis: system)
-            }
-            
         }
-        
-        
     }
     
     public func BlenderRenderAnimated(systems : [VisualizedLindenmayerSystem], generations : [Int]) {
@@ -112,7 +108,7 @@ public class EnhancedCanvas : Canvas {
             
             // Change the line length
             system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
-
+            
             // Move turtle to starting point
             self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
         }
@@ -122,16 +118,16 @@ public class EnhancedCanvas : Canvas {
             
             // Get the index of the next character
             let index = system.word[generation].index(system.word[generation].startIndex, offsetBy: system.animationPosition)
-
+            
             // Get the next character
             let c = system.word[generation][index]
             
             // Render the character
             interpret(character: c, forThis: system)
-
+            
             // Move to next character in word
             system.animationPosition += 1
-
+            
         }
         
     }
@@ -151,9 +147,9 @@ public class EnhancedCanvas : Canvas {
         switch character {
         case "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z":
             // Go forward while drawing a line
-//            self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
-//            self.translate(byX: system.currentLength, byY: 0)
-//            system.state.penX += system.currentLength
+            //            self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
+            //            self.translate(byX: system.currentLength, byY: 0)
+            //            system.state.penX += system.currentLength
             
             self.drawLine(fromX: system.state.penX, fromY: system.state.penY, toX: newPenX, toY: newPenY)
             
@@ -183,12 +179,12 @@ public class EnhancedCanvas : Canvas {
         case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
             self.lineColor = Color(hue: system.colors["\(character)"]!.hue , saturation: system.colors["\(character)"]!.saturation, brightness: system.colors["\(character)"]!.brightness, alpha: 100)
             
-
+            
         default:
             // Do nothing for any another character in the word
             break
         }
-
+        
     }
     
 }

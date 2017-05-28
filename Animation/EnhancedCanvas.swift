@@ -175,6 +175,15 @@ public class EnhancedCanvas : Canvas {
             //self.rotate(by: system.angle * -1)
             system.state.axisAngle -= Int(system.angle)
             
+        case "[":
+            
+            system.stateStack.append(system.state)
+            
+        case "]":
+            
+            var oldState = system.stateStack.popLast()
+            system.state = oldState
+            system.stateStack.removeLast()
             
         case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
             self.lineColor = Color(hue: system.colors["\(character)"]!.hue , saturation: system.colors["\(character)"]!.saturation, brightness: system.colors["\(character)"]!.brightness, alpha: 100)

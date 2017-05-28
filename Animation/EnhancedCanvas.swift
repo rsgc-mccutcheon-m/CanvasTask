@@ -21,16 +21,85 @@ public class EnhancedCanvas : Canvas {
             system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
             
             // Render the word
-            self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
+            //self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
             for c in system.word[generation].characters {
                 interpret(character: c, forThis: system)
             }
-            self.translate(byX: -(system.state.penX), byY: -(system.state.penY))
-            self.rotate(by: -(Degrees(system.state.axisAngle)))
+            
         }
     }
     
-    public func renderAnimated(system : VisualizedLindenmayerSystem, generation : Int) {
+    public func BlenderRender(systems : [VisualizedLindenmayerSystem], generations : Int) {
+        
+        
+        // Verify that generation that was asked to be rendered actually exists
+        for system in systems {
+            
+            print("Run1")
+            
+            
+          
+            var generation = generations
+            if generation >= system.n {
+                
+                generation = system.n
+            }
+            
+            // Change the line length
+            system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+            
+            // Render the word
+            for c in system.word[generation].characters {
+                interpret(character: c, forThis: system)
+            }
+            
+        }
+        
+        
+    }
+    
+    public func BlenderRenderAnimated(systems : [VisualizedLindenmayerSystem], generations : [Int]) {
+        var i = 0
+        for system in systems {
+            // Verify that generation that was asked to be rendered actually exists
+            var generation = generations.count > i ? generations[i] : generations[generations.count-1]
+            if generation > system.n {
+                generation = system.n
+            }
+            
+            // Things to do at start of L-system animation...
+            if system.animationPosition == 0 {
+                
+                // Change the line length
+                system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+                //system.thickness = Float( Double(system.thickness) / pow(Double(system.tReduction), Double(generation)) )
+                // Move turtle to starting point
+                //self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
+            }
+            
+            // Don't run past end of the word
+            if system.animationPosition < system.word[generation].characters.count {
+                
+                // Get the index of the next character
+                let index = system.word[generation].index(system.word[generation].startIndex, offsetBy: system.animationPosition)
+                
+                // Get the next character
+                let c = system.word[generation][index]
+                
+                // Render the character
+                interpret(character: c, forThis: system)
+                
+                // Move to next character in word
+                system.animationPosition += 1
+                
+            }
+            i += 1
+        }
+    }
+    
+    
+    
+    public func RenderAnimated(system : VisualizedLindenmayerSystem, generation : Int) {
         
         // Verify that generation that was asked to be rendered actually exists
         var generation = generation
@@ -69,7 +138,14 @@ public class EnhancedCanvas : Canvas {
     
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
         
+        let XangleScaler : Float = cos(Float(system.state.axisAngle) * Float.pi / 180)
+        let YangleScaler : Float = sin(Float(system.state.axisAngle) * Float.pi / 180)
         
+        let xDistance = Float(XangleScaler * Float(system.currentLength))
+        let yDistance = Float(YangleScaler * Float(system.currentLength))
+        
+        let newPenX = system.state.penX + xDistance
+        let newPenY = system.state.penY + yDistance
         
         // Interpret each character of the word
         switch character {
@@ -79,12 +155,6 @@ public class EnhancedCanvas : Canvas {
 //            self.translate(byX: system.currentLength, byY: 0)
 //            system.state.penX += system.currentLength
             
-            let xDistance = Float(Double(system.currentLength) * Double(cos(Degrees(system.state.axisAngle))))
-            let yDistance = Float(Double(system.currentLength) * Double(sin(Degrees(system.state.axisAngle))))
-            
-            let newPenX = system.state.penX + xDistance
-            let newPenY = system.state.penY + yDistance
-            
             self.drawLine(fromX: system.state.penX, fromY: system.state.penY, toX: newPenX, toY: newPenY)
             
             system.state.penX = newPenX
@@ -92,11 +162,6 @@ public class EnhancedCanvas : Canvas {
             
         case "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z":
             // Go forward without drawing a line
-            let xDistance = Float(Double(system.currentLength) * Double(cos(Degrees(system.state.axisAngle))))
-            let yDistance = Float(Double(system.currentLength) * Double(sin(Degrees(system.state.axisAngle))))
-            
-            let newPenX = system.state.penX + xDistance
-            let newPenY = system.state.penY + yDistance
             
             self.translate(byX: xDistance, byY: yDistance)
             system.state.penX = newPenX
@@ -104,18 +169,18 @@ public class EnhancedCanvas : Canvas {
             
         case "+":
             // Turn left
-            self.rotate(by: system.angle)
+            //self.rotate(by: system.angle)
             
             system.state.axisAngle += Int(system.angle)
             
             
         case "-":
             // Turn right
-            self.rotate(by: system.angle * -1)
+            //self.rotate(by: system.angle * -1)
             system.state.axisAngle -= Int(system.angle)
             
             
-        case "1", "2", "3":
+        case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
             self.lineColor = Color(hue: system.colors["\(character)"]!.hue , saturation: system.colors["\(character)"]!.saturation, brightness: system.colors["\(character)"]!.brightness, alpha: 100)
             
 

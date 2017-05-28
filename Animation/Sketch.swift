@@ -134,8 +134,12 @@ class Sketch : NSObject {
 //        canvas.drawRectangle(bottomLeftX: 0, bottomLeftY: 0, width: canvas.width, height: canvas.height)
 //        
 //        // Render each generation step by step
-       canvas.render(systems: [mediumKochSnowflake, smallKochSnowflake], generation: 0)
-        print(canvas.frameCount)
+       //canvas.render(systems: [smallKochSnowflake], generation: 4)
+        canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 0)
+        print("WORD:")
+        print(smallKochSnowflake.word[0])
+        
+        //print(canvas.frameCount)
         
         // Render the current system
         //canvas.renderAnimated(system: mediumKochSnowflake, generation: 0)

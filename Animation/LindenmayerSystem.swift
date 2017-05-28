@@ -5,14 +5,14 @@ public class LindenmayerSystem {
     
     
     // Set up required information
-    var angle : Degrees                 // rotation amount for turtle (degrees)
+    var angle : Float                 // rotation amount for turtle (degrees)
     var axiom : String
     var rule : [Character : [Rule]]
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
     // is rendered with an animation, step by step
     
-    public init(angle : Degrees,
+    public init(angle : Float,
                 axiom : String,
                 rule : [Character : [String]],
                 generations : Int) {
@@ -125,6 +125,7 @@ public class LindenmayerSystem {
                             
                         } else {
                             
+                            print("appending \(rule[character]!.first!.string)")
                             newWord.append(rule[character]!.first!.string)
                             
                         }

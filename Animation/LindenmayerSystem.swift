@@ -12,7 +12,7 @@ public class LindenmayerSystem {
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
     // is rendered with an animation, step by step
-    var stateStack : [SystemState] = []
+    
     
     public init(angle : Float,
                 axiom : String,

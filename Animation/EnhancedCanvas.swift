@@ -36,7 +36,6 @@ public class EnhancedCanvas : Canvas {
         for system in systems {
             if !system.rendered {
                 
-            
                 var generation = generations
                 if generation >= system.n {
                     generation = system.n
@@ -50,7 +49,12 @@ public class EnhancedCanvas : Canvas {
                     interpret(character: c, forThis: system)
                 }
                 system.rendered = true
+                
+                print("WORD:")
+                print(system.word[generations])
+                
             }
+            
         }
     }
     
@@ -177,7 +181,7 @@ public class EnhancedCanvas : Canvas {
             
         case "[":
             
-            system.stateStack.append(system.state)
+            system.stateStack.append(SystemState(axisAngle: system.state.axisAngle, penY: system.state.penY, penX: system.state.penY))
             
         case "]":
             

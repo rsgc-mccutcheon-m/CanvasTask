@@ -40,9 +40,10 @@ class Sketch : NSObject {
         
         
         // Set up a Koch snowflake
-        kochSnowflake = LindenmayerSystem(angle: 60,
-                                          axiom: "[F++F++F]++[F++F++F]++[F++F++F]",
-                                          rule: [ "F" : ["F-F++F-F"]],
+        kochSnowflake = LindenmayerSystem(angle: 27,
+                                          axiom: "F",
+                                          rule: ["F" : ["FF[-F++F][+F--F]++F--F"]
+                                                ],
                                           generations: 5)
         
         
@@ -53,7 +54,8 @@ class Sketch : NSObject {
                                                          reduction: 3,
                                                          x: 120,
                                                          y: 175,
-                                                         direction: 0)
+                                                         direction: 0
+                                                         )
         //APPEND TO STACK
         self.systemStack.append(smallKochSnowflake)
         
@@ -135,9 +137,8 @@ class Sketch : NSObject {
 //        
 //        // Render each generation step by step
        //canvas.render(systems: [smallKochSnowflake], generation: 4)
-        canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 0)
-        print("WORD:")
-        print(smallKochSnowflake.word[0])
+        canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 5)
+        
         
         //print(canvas.frameCount)
         

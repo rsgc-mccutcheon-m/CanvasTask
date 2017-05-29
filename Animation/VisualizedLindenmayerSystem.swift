@@ -19,6 +19,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem  {
     var animationPosition = 0               // tracks current character being interpreted when system is animated
     var colors : [String : LineColor]
     var state : SystemState
+    var stateStack : [SystemState] = []
     
     public init(with providedSystem: LindenmayerSystem,
                 length: Float,

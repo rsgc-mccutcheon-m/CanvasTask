@@ -181,9 +181,10 @@ public class EnhancedCanvas : Canvas {
             
         case "]":
             
-            var oldState = system.stateStack.popLast()
-            system.state = oldState
-            system.stateStack.removeLast()
+            system.state = system.stateStack.popLast()!
+            //system.state.penX = system.stateStack.last!.penX
+            //system.state.penY = system.stateStack.last!.penY
+            //system.state.axisAngle = system.stateStack.last!.axisAngle
             
         case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
             self.lineColor = Color(hue: system.colors["\(character)"]!.hue , saturation: system.colors["\(character)"]!.saturation, brightness: system.colors["\(character)"]!.brightness, alpha: 100)

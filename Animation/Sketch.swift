@@ -41,7 +41,7 @@ class Sketch : NSObject {
         
         // Set up a Koch snowflake
         kochSnowflake = LindenmayerSystem(angle: 60,
-                                          axiom: "F++F++F",
+                                          axiom: "[F++F++F]++[F++F++F]++[F++F++F]",
                                           rule: [ "F" : ["F-F++F-F"]],
                                           generations: 5)
         
@@ -135,9 +135,9 @@ class Sketch : NSObject {
 //        
 //        // Render each generation step by step
        //canvas.render(systems: [smallKochSnowflake], generation: 4)
-        canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 1)
+        canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 0)
         print("WORD:")
-        print(smallKochSnowflake.word[1])
+        print(smallKochSnowflake.word[0])
         
         //print(canvas.frameCount)
         

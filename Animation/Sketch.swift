@@ -18,7 +18,7 @@ class Sketch : NSObject {
     var systemStack : [VisualizedLindenmayerSystem] = []
     
     // Create the basic L-systems
-    let kochSnowflake : LindenmayerSystem
+    //let kochSnowflake : LindenmayerSystem
 //    let kochIsland : LindenmayerSystem
 //    let kochSwirl : LindenmayerSystem
 //    let kochConstruction : LindenmayerSystem
@@ -42,16 +42,19 @@ class Sketch : NSObject {
         canvas = EnhancedCanvas(width: 500, height: 500)
         
         // The frame rate can be adjusted; the default is 60 fps
-        canvas.framesPerSecond = 60
+        canvas.framesPerSecond = 10
         
         systemStack = fileParser.parse()
         
         // Set up a Koch snowflake
-        kochSnowflake = LindenmayerSystem(angle: 27,
-                                          axiom: "F",
-                                          rule: ["F" : ["FF[-F++F][+F--F]++F--F"]
-                                                ],
-                                          generations: 5)
+//        kochSnowflake = LindenmayerSystem(angle: 27,
+//                                          axiom: "F",
+//                                          rule: ["F" : ["FF[-F++F][+F--F]++F--F"]
+//                                                ],
+//                                          generations: 5)
+        
+        canvas.render(systems: systemStack, generations: 1)
+
         
 //        
 //        
@@ -142,7 +145,7 @@ class Sketch : NSObject {
 //        
 //        // Render each generation step by step
        //canvas.render(systems: [smallKochSnowflake], generation: 4)
-        canvas.render(systems: systemStack, generations: 5)
+        //canvas.render(systems: systemStack, generations: 0)
         
         //canvas.BlenderRenderAnimated(systems: systemStack, generations: 5 )
         

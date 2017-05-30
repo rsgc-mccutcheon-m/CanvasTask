@@ -67,7 +67,7 @@ public class FileParser{
                 
                 
             case "angle":
-                angle = Float(Int(splitLine[1])!)
+                angle = Float(splitLine[1])!
                 break
                 
             case "axiom":

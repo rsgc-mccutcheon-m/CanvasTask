@@ -35,9 +35,16 @@ class Sketch : NSObject {
     // This runs once, equivalent to setup() in Processing
     override init() {
         
+        let fileParser = FileParser(path:"/Users/student/Documents/Clean Repos/LSystems/Animation/l-systems.txt")
+        
+        
         // Create a new canvas
         canvas = EnhancedCanvas(width: 500, height: 500)
         
+        // The frame rate can be adjusted; the default is 60 fps
+        canvas.framesPerSecond = 60
+        
+        systemStack = fileParser.parse()
         
         // Set up a Koch snowflake
         kochSnowflake = LindenmayerSystem(angle: 27,
@@ -123,9 +130,7 @@ class Sketch : NSObject {
 //                                                         y: 350,
 //                                                         direction: 0)
         
-        // The frame rate can be adjusted; the default is 60 fps
-        canvas.framesPerSecond = 60
-        
+    
     }
     
     // Runs repeatedly, equivalent to draw() in Processing
@@ -137,7 +142,7 @@ class Sketch : NSObject {
 //        
 //        // Render each generation step by step
        //canvas.render(systems: [smallKochSnowflake], generation: 4)
-        //canvas.BlenderRender(systems: [smallKochSnowflake, mediumKochSnowflake], generations: 5)
+        canvas.BlenderRender(systems: systemStack, generations: 5)
         
         
         //print(canvas.frameCount)

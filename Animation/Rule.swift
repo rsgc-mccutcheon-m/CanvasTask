@@ -26,9 +26,10 @@ public struct Rule {
                 
                 self.odds = tempProb
                 
+                
             } else {
                 
-                self.odds = 0
+                self.odds = 1
                 print("Rule \(rule) is not stochastic")
                 
             }

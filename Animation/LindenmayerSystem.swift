@@ -12,7 +12,7 @@ public class LindenmayerSystem {
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
     // is rendered with an animation, step by step
-    
+    var oddsTotal : Int
     
     public init(angle : Float,
                 axiom : String,
@@ -26,7 +26,9 @@ public class LindenmayerSystem {
         self.n = generations
         self.word.append(axiom)   // The first word is the axiom
         self.rendered = false
+        self.oddsTotal = 0
         self.rule = parseRules(raw: rule)
+        
         
         
         // Apply the production rule
@@ -37,6 +39,7 @@ public class LindenmayerSystem {
     public init(with system : LindenmayerSystem) {
         
         // Initalize stored properties
+        self.oddsTotal = 0
         self.angle = system.angle
         self.axiom = system.axiom
         self.rule = system.rule
@@ -49,7 +52,7 @@ public class LindenmayerSystem {
     
     func parseRules(raw: [Character : [String]]) -> [Character : [Rule]] {
         
-        var oddsTotal : Int = 0
+        self.oddsTotal = 0
         var prevOdds  : Float  = 0
         var parsedRules : [Character : [Rule]] = [:]
         

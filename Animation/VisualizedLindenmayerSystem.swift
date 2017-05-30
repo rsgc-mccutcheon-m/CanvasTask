@@ -20,8 +20,12 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem  {
     var colors : [String : LineColor]
     var state : SystemState
     var stateStack : [SystemState] = []
+    var thickness : Float
+    var thickReduction : Float
     
     public init(with providedSystem: LindenmayerSystem,
+                thickness : Float,
+                thickReduction : Float,
                 length: Float,
                 reduction: Float,
                 x: Int,
@@ -30,6 +34,8 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem  {
                 colours: [String : LineColor] = [:]) {
         
         // Initialize stored properties
+        self.thickReduction = thickReduction
+        self.thickness = thickness
         self.initialLength = length
         self.reduction = reduction
         self.x = x
@@ -37,6 +43,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem  {
         self.direction = direction
         self.currentLength = self.initialLength
         self.colors = colours
+        
         
         self.state = SystemState(axisAngle: self.direction, penY: Float(self.y), penX: Float(self.x))
         

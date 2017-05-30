@@ -142,7 +142,9 @@ class Sketch : NSObject {
 //        
 //        // Render each generation step by step
        //canvas.render(systems: [smallKochSnowflake], generation: 4)
-        canvas.BlenderRender(systems: systemStack, generations: 5)
+        canvas.render(systems: systemStack, generations: 5)
+        
+        //canvas.BlenderRenderAnimated(systems: systemStack, generations: 5 )
         
         
         //print(canvas.frameCount)

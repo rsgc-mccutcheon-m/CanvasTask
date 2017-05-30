@@ -22,6 +22,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem  {
     var stateStack : [SystemState] = []
     var thickness : Float
     var thickReduction : Float
+    var initialThickness : Float
     
     public init(with providedSystem: LindenmayerSystem,
                 thickness : Float,
@@ -36,6 +37,7 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem  {
         // Initialize stored properties
         self.thickReduction = thickReduction
         self.thickness = thickness
+        self.initialThickness = thickness
         self.initialLength = length
         self.reduction = reduction
         self.x = x

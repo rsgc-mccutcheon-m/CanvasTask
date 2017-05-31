@@ -79,12 +79,9 @@ public class LindenmayerSystem {
             
             for var successor in successors {
                 
-                oddsTotal += successor.odds
+                self.oddsTotal += successor.odds
                 
             }
-        }
-        
-        for (predecessor, successors) in parsedRules {
             
             prevOdds = 0
             for var successor in successors {
@@ -93,7 +90,19 @@ public class LindenmayerSystem {
                 prevOdds = successor.probabillity
                 
             }
+            
         }
+        
+//        for (predecessor, successors) in parsedRules {
+//            
+//            prevOdds = 0
+//            for var successor in successors {
+//                
+//                successor.probabillity = (Float(successor.odds) / Float(oddsTotal)) + prevOdds
+//                prevOdds = successor.probabillity
+//                
+//            }
+//        }
         
         return parsedRules
         
